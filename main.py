@@ -4,7 +4,11 @@ from oreos import Oreo
 # Function to define the base oreos used to generate a post
 def define_oreos():
     oreos = {
-        0: Oreo("Original") # Original
+        # Original
+        0: Oreo(
+            name = "Original",
+            original_layers = ["o", "re", "o"]
+        )
     }
     
     return oreos
@@ -13,10 +17,15 @@ def define_oreos():
 def generate_oreo(oreo_type: Oreo, max_layers: int):
     match oreo_type.get_name(): # Get the name of the oreo and match it with the following cases
         case "Original":
-            possible_layers = ["o", "re"] # Get layers for this oreo
             n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum of `layer_count`
-            for n in range(n_layers): # For each layer...
-                print(random.choice(possible_layers)) # ...print the value
+            generated_layers = [] # Initialise an array to store each layer in
+            for n in range(n_layers): # And for each layer...
+                generated_layers.append(random.choice(oreo_type.get_original_layers())) # ...choose a random one
+            
+            return Oreo( # Finally, return an `Oreo` object
+                name = "Original",
+                generated_layers = generated_layers
+            )
         case _:
             print("unknown oreo type")
 
@@ -25,6 +34,7 @@ def main ():
     oreos = define_oreos() # Define the possible base oreos used for generation
     oreo_type = random.choice(list(oreos.values())) # Choose a random oreo
     max_layers = 10 # Set the maximum layer count
-    generate_oreo(oreo_type, max_layers) # Generate an oreo using these parameters
+    new_oreo = generate_oreo(oreo_type, max_layers) # Generate an oreo using these parameters
+    print(f"{new_oreo.get_name()} has the following layers:\n{new_oreo.get_generated_layers()}")
 
 main()
