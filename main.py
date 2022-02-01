@@ -52,29 +52,15 @@ def define_oreos():
 
 # Function to actually generate an oreo
 def generate_oreo(oreo_type: Oreo, max_layers: int):
-    match oreo_type.get_name(): # Get the name of the oreo and match it with the following cases
-        case "Original":
-            n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum of `layer_count`
-            generated_layers = [] # Initialise an array to store each layer in
-            for n in range(n_layers): # And for each layer...
-                generated_layers.append(random.choice(oreo_type.get_original_layers()).get_name()) # ...choose a random one
-            
-            return Oreo( # Finally, return an `Oreo` object
-                name = "Original",
-                generated_layers = generated_layers
-            )
-        case "Golden":
-            n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum of `layer_count`
-            generated_layers = [] # Initialise an array to store each layer in
-            for n in range(n_layers): # And for each layer...
-                generated_layers.append(random.choice(oreo_type.get_original_layers()).get_name()) # ...choose a random one
-            
-            return Oreo( # Finally, return an `Oreo` object
-                name = "Golden",
-                generated_layers = generated_layers
-            )
-        case _:
-            print("unknown oreo type")
+    n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum of `layer_count`
+    generated_layers = [] # Initialise an array to store each layer in
+    for n in range(n_layers): # And for each layer...
+        generated_layers.append(random.choice(oreo_type.get_original_layers()).get_name()) # ...choose a random one
+    
+    return Oreo( # Finally, return an `Oreo` object
+        name = oreo_type.get_name(),
+        generated_layers = generated_layers
+    )
 
 # Function to create the output that will eventually get posted
 def create_output(output_oreo: Oreo):
