@@ -1,5 +1,5 @@
 import random
-from oreos import Oreo
+from oreos import Oreo, Layer
 
 # Function to define the base oreos used to generate a post
 def define_oreos():
@@ -7,7 +7,17 @@ def define_oreos():
         # Original
         0: Oreo(
             name = "Original",
-            original_layers = ["o", "re", "o"]
+            original_layers = [
+                Layer(
+                    name = "o_top"
+                ),
+                Layer(
+                    name = "re"
+                ),
+                Layer (
+                    name = "o_btm"
+                )
+            ]
         )
     }
     
@@ -20,7 +30,7 @@ def generate_oreo(oreo_type: Oreo, max_layers: int):
             n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum of `layer_count`
             generated_layers = [] # Initialise an array to store each layer in
             for n in range(n_layers): # And for each layer...
-                generated_layers.append(random.choice(oreo_type.get_original_layers())) # ...choose a random one
+                generated_layers.append(random.choice(oreo_type.get_original_layers()).get_name()) # ...choose a random one
             
             return Oreo( # Finally, return an `Oreo` object
                 name = "Original",
