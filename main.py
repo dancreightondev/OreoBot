@@ -24,6 +24,27 @@ def define_oreos():
                     file_path = "original/o_btm.png"
                 )
             ]
+        ),
+        # Golden
+        1: Oreo(
+            name = "Golden",
+            original_layers = [
+                Layer(
+                    name = "golden_o_top",
+                    display_name = "O",
+                    file_path = "golden/golden_o_top.png"
+                ),
+                Layer(
+                    name = "golden_re",
+                    display_name = "RE",
+                    file_path = "golden/golden_re.png"
+                ),
+                Layer(
+                    name = "golden_o_btm",
+                    display_name = "O",
+                    file_path = "golden/golden_o_btm.png"
+                )
+            ]
         )
     }
     
@@ -40,6 +61,16 @@ def generate_oreo(oreo_type: Oreo, max_layers: int):
             
             return Oreo( # Finally, return an `Oreo` object
                 name = "Original",
+                generated_layers = generated_layers
+            )
+        case "Golden":
+            n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum of `layer_count`
+            generated_layers = [] # Initialise an array to store each layer in
+            for n in range(n_layers): # And for each layer...
+                generated_layers.append(random.choice(oreo_type.get_original_layers()).get_name()) # ...choose a random one
+            
+            return Oreo( # Finally, return an `Oreo` object
+                name = "Golden",
                 generated_layers = generated_layers
             )
         case _:
