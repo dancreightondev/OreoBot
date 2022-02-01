@@ -1,8 +1,16 @@
 import random
+from oreos import Oreo
 
-def generate_oreo(oreo_type: str):
-    match oreo_type:
-        case "regular":
+def define_oreos():
+    oreos = {
+        "default": Oreo("Original")
+    }
+    
+    return oreos
+
+def generate_oreo(oreo_type: Oreo):
+    match oreo_type.get_name():
+        case "Original":
             possible_layers = ["o", "re"]
             n_layers = random.randint(1,10)
             for n in range(n_layers):
@@ -11,6 +19,7 @@ def generate_oreo(oreo_type: str):
             print("unknown oreo type")
 
 def main ():
-    generate_oreo("regular")
+    oreos = define_oreos()
+    generate_oreo(random.choice(list(oreos.values())))
 
 main()
