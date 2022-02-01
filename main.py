@@ -9,13 +9,19 @@ def define_oreos():
             name = "Original",
             original_layers = [
                 Layer(
-                    name = "o_top"
+                    name = "o_top",
+                    display_name = "O",
+                    file_path = "original/o_top.png"
                 ),
                 Layer(
-                    name = "re"
+                    name = "re",
+                    display_name = "RE",
+                    file_path = "original/re.png"
                 ),
                 Layer (
-                    name = "o_btm"
+                    name = "o_btm",
+                    display_name = "O",
+                    file_path = "original/o_btm.png"
                 )
             ]
         )
