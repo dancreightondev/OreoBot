@@ -1,3 +1,6 @@
+# Bot-specific files
+img/inspiration.jpg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
