@@ -52,7 +52,7 @@ def define_oreos():
 
 # Function to actually generate an oreo
 def generate_oreo(oreo_type: Oreo, max_layers: int):
-    n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum of `layer_count`
+    n_layers = random.randint(1,max_layers) # Assign a random number of layers, up to the maximum count of `max_layers`
     generated_layers = [] # Initialise an array to store each layer in
     for n in range(n_layers): # And for each layer...
         generated_layers.append(random.choice(oreo_type.get_original_layers()).get_name()) # ...choose a random one
