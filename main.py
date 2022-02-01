@@ -45,12 +45,16 @@ def generate_oreo(oreo_type: Oreo, max_layers: int):
         case _:
             print("unknown oreo type")
 
+# Function to create the output that will eventually get posted
+def create_output(output_oreo: Oreo):
+    print(f"{output_oreo.get_name()} has the following layers:\n{output_oreo.get_generated_layers()}")
+
 # Main function
 def main ():
     oreos = define_oreos() # Define the possible base oreos used for generation
     oreo_type = random.choice(list(oreos.values())) # Choose a random oreo
     max_layers = 10 # Set the maximum layer count
     new_oreo = generate_oreo(oreo_type, max_layers) # Generate an oreo using these parameters
-    print(f"{new_oreo.get_name()} has the following layers:\n{new_oreo.get_generated_layers()}")
+    create_output(new_oreo) # Create the output that will eventually get posted
 
 main()
