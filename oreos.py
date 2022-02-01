@@ -20,7 +20,7 @@ class Oreo:
             return f"{self.name} has no generated layers. Did you mean to return the original layers?"
 
 class Layer:
-    def __init__(self, name, calories):
+    def __init__(self, name, calories=0):
         self.name = name
         self.calories = calories
     
