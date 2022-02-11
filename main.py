@@ -96,16 +96,16 @@ def create_output(output_oreo: Oreo):
     # Set the text
     text = "".join(output_oreo.get_generated_layers())
 
-    # Get the text size in the specified font
-    text_w, text_h = canvas.textsize(text, font=font)
-
     # Set the fraction of the image width that the text should be
     text_width_fraction = 0.70
     
     # Increase the font size while the text width is less than the desired width and the text height is less than the maximum font size
-    while (text_w < text_width_fraction*output_w) & (text_h < max_font_size):
+    while (font.getsize(text)[0] < text_width_fraction*output.size[0]) & (font.getsize(text)[1] < max_font_size):
         font_size += 1
         font = ImageFont.truetype("fnt/MatSaleh.ttf", font_size)
+    
+    # Get the text size in the specified font
+    text_w, text_h = canvas.textsize(text, font=font)
     
     # Draw the text horizontally centred at the bottom of the canvas
     canvas.text(((output_w-text_w)/2, output_h-(text_h/0.75)), text, (0,0,0), font=font)
@@ -115,7 +115,7 @@ def create_output(output_oreo: Oreo):
 
     # Save the output to the aforementioned file path
     output.save(out_file_path, "PNG")
-    print(f"{output_oreo.get_name()} has the following layers:\n{output_oreo.get_generated_layers()}")
+    print(f"{output_oreo.get_name()} has the following layers:\n{output_oreo.get_generated_layers()}\nSaved image to '{out_file_path}'")
     
     # Return the output file path
     return out_file_path 
